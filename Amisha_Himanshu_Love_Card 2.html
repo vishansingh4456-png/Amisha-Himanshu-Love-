@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amisha ❤️ Himanshu</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow:hidden;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#120018,#3b062f,#120018);
+  color:white; display:flex; align-items:center; justify-content:center;
+}
+.card{
+  width:min(92%,430px); min-height:620px; padding:34px 24px;
+  border:1px solid rgba(255,255,255,.18); border-radius:28px;
+  background:rgba(255,255,255,.09); backdrop-filter:blur(14px);
+  box-shadow:0 20px 70px rgba(0,0,0,.5);
+  text-align:center; position:relative; z-index:2;
+}
+.heart{font-size:70px; animation:pulse 1.3s infinite}
+h1{font-size:34px;margin:12px 0 8px}
+h2{font-size:24px;margin:8px 0 20px}
+p{font-size:17px;line-height:1.65;color:#ffeaf5}
+button{
+  border:0;border-radius:999px;padding:14px 25px;margin:8px;
+  font-size:16px;font-weight:bold;cursor:pointer;
+  background:#ff4f9a;color:white;box-shadow:0 8px 25px rgba(255,79,154,.35)
+}
+button.alt{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}
+.hidden{display:none}
+.small{font-size:13px;opacity:.75;margin-top:25px}
+.float{
+  position:fixed; bottom:-30px; font-size:22px; animation:rise linear forwards;
+  pointer-events:none; z-index:1;
+}
+@keyframes pulse{50%{transform:scale(1.12)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+.fade{animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="page1" class="fade">
+    <div class="heart">❤️</div>
+    <h1>Hey Amisha...</h1>
+    <p>Himanshu ne tumhare liye kuch special banaya hai.</p>
+    <button onclick="next(2)">Open My Surprise 💌</button>
+  </div>
+
+  <div id="page2" class="hidden">
+    <div class="heart">💖</div>
+    <h2>Amisha & Himanshu</h2>
+    <p>
+      Kuch log life mein bas aate nahi...<br>
+      woh life ko aur beautiful bana dete hain.
+    </p>
+    <p><b>Amisha, tum mere liye wahi ho. ❤️</b></p>
+    <button onclick="next(3)">One More Thing ✨</button>
+  </div>
+
+  <div id="page3" class="hidden">
+    <div class="heart">💌</div>
+    <h2>For You, Amisha</h2>
+    <p>
+      Main perfect nahi hoon, lekin tumhare saath har moment ko
+      special banane ki koshish hamesha karunga.
+      Tumhari smile mere favourite moments mein se ek hai.
+    </p>
+    <p><b>— Yours, Himanshu ❤️</b></p>
+    <button onclick="next(4)">Final Surprise 🎁</button>
+  </div>
+
+  <div id="page4" class="hidden">
+    <div class="heart">🥰</div>
+    <h2>Will you keep this love forever?</h2>
+    <p>Bas ek chhota sa answer chahiye... ❤️</p>
+    <button onclick="yes()">YES ❤️</button>
+    <button class="alt" onclick="nope()">NO 🙈</button>
+    <p id="answer" class="hidden"></p>
+  </div>
+
+  <div class="small">Made with ❤️ for Amisha • Himanshu</div>
+</div>
+
+<script>
+function next(n){
+  document.querySelectorAll('.card > div[id^="page"]').forEach(x=>x.classList.add('hidden'));
+  const el=document.getElementById('page'+n);
+  el.classList.remove('hidden'); el.classList.add('fade');
+}
+function yes(){
+  const a=document.getElementById('answer');
+  a.innerHTML='Yay! ❤️ Amisha + Himanshu = Forever ♾️💖';
+  a.classList.remove('hidden');
+  for(let i=0;i<25;i++) setTimeout(makeHeart,i*80);
+}
+function nope(){
+  const a=document.getElementById('answer');
+  a.innerHTML='Hehe 🙈 “NO” button thoda shy hai... ek baar YES try karo ❤️';
+  a.classList.remove('hidden');
+}
+function makeHeart(){
+  const h=document.createElement('div');
+  h.className='float'; h.textContent=['❤️','💖','💕','💗','✨'][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+'vw';
+  h.style.animationDuration=(3+Math.random()*4)+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(makeHeart,900);
+</script>
+</body>
+</html>
